@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AdMob Test</string>
+
+
+    <!--AdMob related ID's-->
+    <string name="app_id_test">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="app_id_prod">ca-app-pub-9102405954755269~8780423362</string>
+
+    <string name="app_unitid">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="app_interstitialunitid">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="title_activity_interstitial_ad">InterstitialAdActivity</string>
+    <string name="title_activity_native_express">NativeExpress</string>
+    <string name="title_activity_native_advance">NativeAdvance</string>
+</resources>
