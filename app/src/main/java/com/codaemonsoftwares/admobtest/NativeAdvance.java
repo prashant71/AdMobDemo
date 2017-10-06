@@ -20,13 +20,10 @@ import com.google.android.gms.ads.formats.NativeContentAdView;
 
 public class NativeAdvance extends AppCompatActivity {
     private static final String ADMOB_AD_UNIT_ID = "ca-app-pub-3940256099942544/2247696110";
-    private static final String ADMOB_APP_ID = "ca-app-pub-3940256099942544~3347511713";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nativeadvance);
-
-//        MobileAds.initialize(this, ADMOB_APP_ID);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,21 +42,7 @@ public class NativeAdvance extends AppCompatActivity {
             public void onContentAdLoaded(NativeContentAd nativeContentAd) {
                 FrameLayout fml=(FrameLayout)findViewById(R.id.frame);
                 NativeContentAdView nativeContentAdView=(NativeContentAdView) getLayoutInflater().inflate(R.layout.ad_content,null);
-                nativeContentAdView.setHeadlineView(nativeContentAdView.findViewById(R.id.contentad_headline));
-                nativeContentAdView.setImageView(nativeContentAdView.findViewById(R.id.contentad_image));
-                nativeContentAdView.setBodyView(nativeContentAdView.findViewById(R.id.contentad_body));
-                nativeContentAdView.setCallToActionView(nativeContentAdView.findViewById(R.id.contentad_call_to_action));
-                nativeContentAdView.setLogoView(nativeContentAdView.findViewById(R.id.contentad_logo));
-                nativeContentAdView.setAdvertiserView(nativeContentAdView.findViewById(R.id.contentad_advertiser));
-
-                // Some assets are guaranteed to be in every NativeContentAd.
-                ((TextView) nativeContentAdView.getHeadlineView()).setText(nativeContentAd.getHeadline());
-                ((TextView) nativeContentAdView.getBodyView()).setText(nativeContentAd.getBody());
-                ((TextView) nativeContentAdView.getCallToActionView()).setText(nativeContentAd.getCallToAction());
-                ((TextView) nativeContentAdView.getAdvertiserView()).setText(nativeContentAd.getAdvertiser());
-                ((ImageView) nativeContentAdView.getImageView()).setImageDrawable(nativeContentAd.getImages().get(0).getDrawable());
-
-                nativeContentAdView.setNativeAd(nativeContentAd);
+                displayContentAdd(nativeContentAd,nativeContentAdView);
                 fml.removeAllViews();
                 fml.addView(nativeContentAdView);
             }
@@ -100,7 +83,7 @@ public class NativeAdvance extends AppCompatActivity {
                 super.onAdImpression();
             }
         })
-        .withNativeAdOptions(new NativeAdOptions.Builder()
+        .withNativeAdOptions(new NativeAdOptions.Builder().setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_LEFT)
                         // Methods in the NativeAdOptions.Builder class can be
                         // used here to specify individual options settings.
         .build()).build();
@@ -118,6 +101,24 @@ public class NativeAdvance extends AppCompatActivity {
         ((Button)nativeAppInstallAdView.getCallToActionView()).setText(nativeAppInstallAd.getCallToAction());
 
         nativeAppInstallAdView.setNativeAd(nativeAppInstallAd);
+    }
+
+    private void displayContentAdd(NativeContentAd nativeContentAd,NativeContentAdView nativeContentAdView){
+        nativeContentAdView.setHeadlineView(nativeContentAdView.findViewById(R.id.contentad_headline));
+        nativeContentAdView.setImageView(nativeContentAdView.findViewById(R.id.contentad_image));
+        nativeContentAdView.setBodyView(nativeContentAdView.findViewById(R.id.contentad_body));
+        nativeContentAdView.setCallToActionView(nativeContentAdView.findViewById(R.id.contentad_call_to_action));
+        nativeContentAdView.setLogoView(nativeContentAdView.findViewById(R.id.contentad_logo));
+        nativeContentAdView.setAdvertiserView(nativeContentAdView.findViewById(R.id.contentad_advertiser));
+
+        // Some assets are guaranteed to be in every NativeContentAd.
+        ((TextView) nativeContentAdView.getHeadlineView()).setText(nativeContentAd.getHeadline());
+        ((TextView) nativeContentAdView.getBodyView()).setText(nativeContentAd.getBody());
+        ((TextView) nativeContentAdView.getCallToActionView()).setText(nativeContentAd.getCallToAction());
+        ((TextView) nativeContentAdView.getAdvertiserView()).setText(nativeContentAd.getAdvertiser());
+        ((ImageView) nativeContentAdView.getImageView()).setImageDrawable(nativeContentAd.getImages().get(0).getDrawable());
+
+        nativeContentAdView.setNativeAd(nativeContentAd);
     }
 
 }
