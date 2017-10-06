@@ -27,6 +27,13 @@
         <activity
             android:name=".NativeAdvance"
             android:label="@string/title_activity_native_advance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NativeAdAdvance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BannerAdActivity"
+            android:label="@string/title_activity_banner_ad"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
